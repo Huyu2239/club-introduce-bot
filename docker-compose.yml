@@ -1,0 +1,21 @@
+# ローカル作業用:heroku内では作用しない。
+
+version: '3.7'
+
+services:
+  app:
+    build: .
+    container_name: linebot
+    tty: true
+    ports:
+      - 12358:5000
+    environment:
+        FLASK_ENV: 'development'
+        FLASK_APP:  "app.py"
+        YOUR_CHANNEL_ACCESS_TOKEN: "XpOcv8yP9KoJmEAZTCaDPU6/FLNkBbiU8z08plMcz+QezuklyunICDrn3QS3iGaTiRfr9//FO2S8g0vpQKPw8aat9sFBNMAFfqNmHz2Ym+cGlnTeMINukEYMgR8TbUs8rUJlVtATYskOajuYmeHu1QdB04t89/1O/w1cDnyilFU="
+        YOUR_CHANNEL_SECRET: "fb5bf6bbbf85f88f33110c973aaeea2c"
+    volumes:
+      - type: bind
+        source: ./files
+        target: /code/files
+    command: flask run -h 0.0.0.0
